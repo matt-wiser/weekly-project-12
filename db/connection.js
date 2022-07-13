@@ -7,10 +7,6 @@ const db = mysql.createConnection({
   // Your MySQL password
   password: 'wehttam1',
   database: 'company_db'
-},
-
-console.log("Database is running!")
-
-);
+});
 
 module.exports = db;

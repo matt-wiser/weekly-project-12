@@ -1,76 +1,44 @@
 const inquirer = require('inquirer');
 const cTable = require("console.table");
-const db = require('./db/connection');
-
-const {initialQuestions, employeeQuestions, roleQuestions, departmentQuestions} = require('./lib/questionArrays');
+const {initialQuestions, employeeQuestions, roleQuestions, departmentQuestions, employeeUpdateQuestions} = require('./lib/questionArrays');
+const  {displayDepartments, displayRoles, displayEmployees, createNewDepartment, createNewRole, createNewEmployee, updateEmployee} = require("./lib/helperFunctions");
 
 
 function init(){
     inquirer.prompt(initialQuestions)
     .then(response =>{
         if (response.action === 'View all departments') {
-            const query = `SELECT * FROM departments`;
-
-            db.query(query, (err, rows) => {
-                if (err) {
-                    console.log(err);
-                }
-                console.table(rows);
-            });
-            db.end();
+            displayDepartments();
         } 
         if (response.action === 'View all roles') {
-            const query = `SELECT * FROM roles`;
-
-            db.query(query, (err, rows) => {
-                if (err) {
-                    console.log(err);
-                }
-                console.table(rows);
-            });
+            displayRoles();
         } 
          if (response.action === 'View all employees') {
-            const query = `SELECT * FROM employees`;
-
-            db.query(query, (err, rows) => {
-                if (err) {
-                    console.log(err);
-                }
-                console.table(rows);
-            });
-            db.end();
+            displayEmployees();
         } 
         if (response.action === 'Create a deparment') {
             inquirer.prompt(departmentQuestions)
             .then(response => {
-                // createNewDepartment(response)
-                console.log(response);
-                db.close();
+                createNewDepartment(response)
             });
-            db.end();
         } 
         if (response.action === 'Create a role') {
             inquirer.prompt(roleQuestions)
             .then(response => {
-                
+                createNewRole(response);
             })
-            db.end();
         } 
         if (response.action === 'Create an employee') {
             inquirer.prompt(employeeQuestions)
             .then(response => {
-
+                createNewEmployee(response);
             })
-            db.end();
         } 
         if (response.action === 'Update an employee role'){
-            // Edit an employees role
-            db.end();
-        }
-        if (response.action === 'Exit the program') {
-            //exit application
-            console.log("GOODBYE");
-            db.end();
+            inquirer.prompt(employeeUpdateQuestions)
+            .then(response => {
+               updateEmployee(response);
+            })
         }
     });
 }
