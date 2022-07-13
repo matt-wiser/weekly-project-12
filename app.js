@@ -41,7 +41,7 @@ function init(){
         if (response.actionSelection === 'Update an employee role'){
             // Edit an employees role
         }
-        if (response.actionSelection === 'Exit the program') {
+        else if (response.actionSelection === 'Exit the program') {
             //exit application
             console.log("GOODBYE");
         }

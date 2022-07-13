@@ -14,14 +14,14 @@ CREATE TABLE roles (
     title VARCHAR(50),
     salary DECIMAL,
     department_id INTEGER,
-    CONSTRAINT fk_id FOREIGN KEY (department_id) REFERENCES department(id)
+    CONSTRAINT fk_id FOREIGN KEY (department_id) REFERENCES departments(id)
 );
 
 CREATE TABLE employees (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
+    manager_name VARCHAR(50),
     role_id INTEGER,
-    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id),
-    manager_id INTEGER
+    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id)
 );
