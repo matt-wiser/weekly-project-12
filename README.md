@@ -1,5 +1,5 @@
 # Employee Tracker
-
+![Screenshot](/img/screenshot.png)
 ## Purpose
 Create an interactive command line interface program using Node.js, inquirer, and MYSQL to track employees, departments, and employment roles within an organiztion.
 
@@ -22,4 +22,4 @@ Create an interactive command line interface program using Node.js, inquirer, an
 ## Built By
 * Matthew Wiser
 
-![Screenshot](/img/screenshot.png)
+
